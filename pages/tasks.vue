@@ -1,8 +1,5 @@
 <template>
     <div class="p-6">
-        <!-- <Preloader /> -->
-        <!-- <h2>;knoeru9</h2> -->
-        <!-- <TestToDo />  -->
 
         <div class="flex justify-between items-center">
             <div>
@@ -33,12 +30,6 @@
         </div>
 
         <!-- <p>You are viewing {{ selectedOption }} tasks</p> -->
-
-        <div class="grid grid-cols-2 gap-4 p-6">
-      <!-- <div v-for="item in todo_list" :key="item.id" class="border p-6 rounded-md max-w-lg flex flex-col justify-between">
-        <p>{{ item }}</p>
-      </div> -->
-        </div> 
         
     </div>
 
@@ -62,11 +53,9 @@
             </div>
         </div>
         <div class="flex justify-center items-center" v-else>
-            <!-- <h1>no content</h1> -->
+            <h1>no content</h1>
             <h1>No {{ selectedOption }} tasks yet.</h1>
         </div>
-
-        <!-- <ToDoList />  -->
 
     </div>
 </template>
@@ -77,17 +66,19 @@ definePageMeta({
   middleware: 'auth'
 })
 
-import { ref, computed, onMounted } from 'vue';
+// import { ref, computed, onMounted } from 'vue';
 
 const user = useSupabaseUser();
 
+const client = useSupabaseClient();
 
-import { createClient } from '@supabase/supabase-js'
+// import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = 'https://fkvnvhdjidzlfhimwqpo.supabase.co'
-const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZrdm52aGRqaWR6bGZoaW13cXBvIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODcyMjM0NzUsImV4cCI6MjAwMjc5OTQ3NX0.wcN8iPzD4e_0sueun1BAs4puPc6vbPg4OMQdFf3MLy4"
-// console.log(supabaseKey)
-const supabase = createClient(supabaseUrl, supabaseKey)
+// const supabaseUrl= "https://fkvnvhdjidzlfhimwqpo.supabase.co"
+// const supabaseKey= "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZrdm52aGRqaWR6bGZoaW13cXBvIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODcyMjM0NzUsImV4cCI6MjAwMjc5OTQ3NX0.wcN8iPzD4e_0sueun1BAs4puPc6vbPg4OMQdFf3MLy4"
+
+
+// const supabase = createClient(supabaseUrl, supabaseKey);
 
 const options = ref(['All', 'Completed', 'In progress', 'Archive']);
 const selectedOption = ref('All');
@@ -97,14 +88,14 @@ function selectOption(option) {
   selectedOption.value = option;
 }
 
-console.log(user.value.id)
+// console.log(user.value.id)
 
 
 const todo_list = ref([]);
 
 async function fetchTodos() {
   try {
-    const { data, error } = await supabase
+    const { data, error } = await client
       .from('todos')
       .select('*')
       .eq('user_id', user.value.id);
@@ -133,10 +124,10 @@ fetchTodos();
 
 async function updateToDo(item) {
   try {
-    const { data, error } = await supabase
-      .from('todos')
-      .update({ completed: item.completed })
-      .match({ id: item.id });
+    // const { data, error } = await supabase
+    //   .from('todos')
+    //   .update({ completed: item.completed })
+    //   .match({ id: item.id });
 
     if (error) {
       console.error('Error updating task:', error);
@@ -184,7 +175,7 @@ async function updateToDo(item) {
 
 .segmented-button.active {
     background-color: rgba(24, 52, 64, 0.1);
-  /* background-color: #FFFFFF; */
+  background-color: #FFFFFF;
   color: #183440;
 }
 

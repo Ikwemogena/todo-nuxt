@@ -13,10 +13,7 @@
                 <p>Create a new task on TO-DO</p>
                 <button @click="openForm" class="p-6 bg-gray-600 flex gap-2 justify-center my-2 text-white"><img src="../assets/icons/add-circle.svg" alt="">Create Task</button>
             </div>
-            <!-- <TestToDo />  -->
         </div>
-
-        <Test /> 
 
         <!-- <div v-if="showModal" class="fixed inset-0 flex flex-col items-center justify-center z-50">
       <div class="w-72 h-96 bg-white rounded-lg shadow-lg">
