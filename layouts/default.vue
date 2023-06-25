@@ -7,10 +7,10 @@
                     <h1 class="text-xl font-bold p-4 m-0">TO-DO</h1>
                  <!-- Menu content goes here  -->
                 <ul class="p-4 text-xl w-28">
-                    <NuxtLink to="/" class="mb-4 flex items-center"><img src="../assets/icons/home-icon.svg" alt="" class="mr-2 icon-white">Home</NuxtLink>
-                    <NuxtLink to="/tasks" class="mb-4 flex items-center mt-2"><img src="../assets/icons/task-square.svg" alt="" class="mr-2">Tasks</NuxtLink>
-                    <NuxtLink to="" class="mb-4 flex items-center mt-2"><img src="../assets/icons/archive.svg" alt="" class="mr-2">Archive</NuxtLink>
-                    <NuxtLink class="mb-4 flex items-center mt-2"><img src="../assets/icons/note-favorite.svg" alt="" class="mr-2">Reminders</NuxtLink>
+                    <NuxtLink to="/" class="mb-4 flex items-center">Home</NuxtLink>
+                    <NuxtLink to="/tasks" class="mb-4 flex items-center mt-2">Tasks</NuxtLink>
+                    <NuxtLink to="" class="mb-4 flex items-center mt-2">Archive</NuxtLink>
+                    <NuxtLink class="mb-4 flex items-center mt-2">Reminders</NuxtLink>
                 </ul>
                 </div>
                  <!-- Profile section  -->
@@ -29,7 +29,7 @@
                         <h4 class="text-lg font-semibold">John Doe</h4>
                         <p class="text-gray-500">john.doe@example.com</p>
                     </div> -->
-                    <img src="../assets/icons/more-icon.svg" alt="">
+                    <!-- <img src="../assets/icons/more-icon.svg" alt=""> -->
                 </div>
                 <div class="p-4 flex" v-else>
                     <div class="bg-black text-teal-700 flex justify-center items-center p-5">

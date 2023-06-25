@@ -8,10 +8,10 @@
             <p class="ml-4">Lets get our day organised by creating a task</p>
         </div>
         <div class="flex flex-col items-center justify-center">
-            <img src="../assets/images/bro.png" alt="">
+            <!-- <img src="../assets/images/bro.png" alt=""> -->
             <div class="flex flex-col text-center">
                 <p>Create a new task on TO-DO</p>
-                <button @click="openForm" class="p-6 bg-gray-600 flex gap-2 justify-center my-2 text-white"><img src="../assets/icons/add-circle.svg" alt="">Create Task</button>
+                <button @click="openForm" class="p-6 bg-gray-600 flex gap-2 justify-center my-2 text-white">Create Task</button>
             </div>
         </div>
 
