@@ -7,17 +7,16 @@ export default defineNuxtConfig({
   ],
   app: {
     head: {
-      title: "nuxt-supabase-tailwind",
+      title: "TO-DO",
       meta: [
-        {name: 'description', content: 'Nuxt.js + Supabase + Tailwind CSS starter template'}
+        {name: 'description', content: 'TO-DO template'}
       ],
       link: [
         {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}
       ]
     }
   },
-  runtimeConfig: {
-    supabaseUrl: process.env.SUPABASE_URL,
-    supabaseKey: process.env.SUPABASE_KEY,
-  }
+  tailwindcss: {
+    cssPath: '~/assets/css/tailwind.css',
+  },
 })

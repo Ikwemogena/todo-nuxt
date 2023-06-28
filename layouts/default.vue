@@ -1,46 +1,45 @@
 <template>
     <div>
-        <Preloader />
-        <div class="flex h-screen">            
-            <aside class="w-1/5 flex flex-col justify-between py-4">
+        <!-- <Preloader /> -->
+        <div class="flex h-screen ">            
+            <aside class="w-1/5 flex flex-col justify-between py-4 p-6 pt-8">
                 <div>
-                    <h1 class="text-xl font-bold p-4 m-0">TO-DO</h1>
+                    <h1 class="text-xl font-bold pl-0 m-0 mb-3">TO-DO</h1>
                  <!-- Menu content goes here  -->
-                <ul class="p-4 text-xl w-28">
-                    <NuxtLink to="/" class="mb-4 flex items-center">Home</NuxtLink>
-                    <NuxtLink to="/tasks" class="mb-4 flex items-center mt-2">Tasks</NuxtLink>
-                    <NuxtLink to="" class="mb-4 flex items-center mt-2">Archive</NuxtLink>
-                    <NuxtLink class="mb-4 flex items-center mt-2">Reminders</NuxtLink>
-                </ul>
+                    <ul class="text-xl mr-6">
+                        <NuxtLink to="/" class="mb-4 flex items-center">Home</NuxtLink>
+                        <NuxtLink to="/tasks" class="mb-4 flex items-center mt-2">Tasks</NuxtLink>
+                        <NuxtLink to="" class="mb-4 flex items-center mt-2">Archive</NuxtLink>
+                        <NuxtLink class="mb-4 flex items-center mt-2">Reminders</NuxtLink>
+                    </ul>
                 </div>
-                 <!-- Profile section  -->
-                <div>
-        </div>
-                <div class="p-4 flex items-center" v-if="user">
-                    <img class="w-12 h-12 rounded-full" src="https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?cs=srgb&dl=pexels-mohamed-abdelghaffar-771742.jpg&fm=jpg" alt="Profile Image">
-                    <NuxtLink to="/profile" >
-                        <div class="ml-3">
-                        <!-- <h4 class="text-lg font-semibold">{{ user.email }}</h4> -->
-                        <p class="text-gray-500">{{ user.email }}</p>
+                <!-- Profile section  -->
+                <div class="mr-6">
+                    <div class="p-2 border rounded add-button mb-2" @click="showModal = true">
+                        <div class="flex gap-2 justify-center text-center p-2">
+                            <img src="../assets/icons/add-circle.svg" alt="" srcset="">
+                            <button class="text-white">Add New Task</button>
+                        </div>
                     </div>
-                        
-                    </NuxtLink>
-                    <!-- <div class="ml-3">
-                        <h4 class="text-lg font-semibold">John Doe</h4>
-                        <p class="text-gray-500">john.doe@example.com</p>
-                    </div> -->
-                    <!-- <img src="../assets/icons/more-icon.svg" alt=""> -->
-                </div>
-                <div class="p-4 flex" v-else>
-                    <div class="bg-black text-teal-700 flex justify-center items-center p-5">
-                        <NuxtLink to="/sign-in">Sign In</NuxtLink>
+                    <div class="p-2 flex items-center border rounded" v-if="user">
+                    <!-- <div class="p-2 flex items-center border rounded"> -->
+                        <img class="w-12 h-12 rounded-full" src="https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?cs=srgb&dl=pexels-mohamed-abdelghaffar-771742.jpg&fm=jpg" alt="Profile Image">
+                        <NuxtLink to="/profile" >
+                            <div class="ml-3">
+                            <p class="text-gray-500">{{ user.email }}</p>
+                            </div>
+                            
+                        </NuxtLink>
                     </div>
+                        <div class="text-black-700 font-bold border py-3 text-center" v-else>
+                            <NuxtLink to="/sign-in">Sign In</NuxtLink>
+                        </div>
                 </div>
+                
             </aside>
-            <main class="flex-1">
+            <main class="flex-1 main">
                <!-- Main content goes here -->
-                <!-- <h1 class="text-2xl font-bold mt-4 ml-4">Main Content</h1>
-                <p class="ml-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> -->
+                <AddTask :showModal="showModal" @close="showModal = false" />
                 <slot />
             </main>
         </div>
@@ -50,26 +49,11 @@
 </template>
 <script setup>
 const user = useSupabaseUser();
-// import supabase from '~/server/api/supabase.js';
+console.log(user.value)
 
-// const user = ref(null);
+const showModal = ref(false);
+console.log(showModal.value,'default layout')
 
-// onMounted(() => {
-//   // Wait for the client to initialize before accessing $supabase
-//   supabase.auth.onAuthStateChange((event, session) => {
-//     if (event === 'SIGNED_IN') {
-//       user.value = session.user;
-//     } else {
-//       user.value = null;
-//     }
-//   });
-
-//   // Check initial authentication state
-//   const session = supabase.auth.session;
-//   if (session) {
-//     user.value = session.user;
-//   }
-// });
 </script>
 
 <style scoped>
@@ -77,10 +61,18 @@ const user = useSupabaseUser();
     background-color: #183440;
     color: #FFFFFF;
     border-radius: 12px;
-    width: 160px;
     padding: 8px 0px 8px 12px;
     display: flex;
     gap: 10px;
+    transition: 0.1s ease;
+}
+
+.main {
+    background-color: #fafafa;
+}
+
+.add-button {
+    background-color: #183440;
 }
 
 </style>

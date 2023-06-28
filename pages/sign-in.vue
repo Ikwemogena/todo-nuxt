@@ -15,7 +15,7 @@
       </div>
     </form>
     <form v-else @submit.prevent="signIn">
-      <h1 class="text-2xl font-bold mb-4">Sign in to your acoount</h1>
+      <h1 class="text-2xl font-bold mb-4">Sign in to your account</h1>
       <div class="mb-4">
         <label for="loginEmail" class="block font-bold">Email:</label>
         <input type="email" id="loginEmail" v-model="loginEmail" class="w-full p-2 border border-gray-300 rounded" required>
@@ -36,11 +36,15 @@
         {{ switchToLogin ? 'Create New Account' : 'Sign In' }}
       </button>
     </div>
+
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+
+definePageMeta({
+        layout: 'register'
+})
 
 const email = ref('');
 const password = ref('');
@@ -86,6 +90,7 @@ async function signIn() {
             // will be caught in the try catch block
             errorMessage.value = '';
             successMessage.value = "Signed in successfully"
+            console.log('started')
 
             router.push('/tasks')
         } catch (error) {
@@ -103,7 +108,6 @@ async function signIn() {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* align-items: start; */
   max-width: 400px;
   margin: 0 auto;
   padding: 40px;
@@ -111,4 +115,27 @@ async function signIn() {
   border-radius: 8px;
 }
 /* 183440 */
+
+.calendar-input-chip {
+  display: inline-flex;
+  align-items: center;
+  background-color: #f2f2f2;
+  padding: 8px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.selected-month {
+  margin-right: 8px;
+  font-weight: bold;
+}
+
+.arrow-down-icon {
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #999999;
+}
+
 </style>
